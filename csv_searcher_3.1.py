@@ -1,9 +1,9 @@
 import csv
 from encodings import utf_8
 
-#path = input("Введи полный путь до файла, либо, закинь в папку проекта и тогда только имя файла: ")
+path = input("Введи полный путь до файла или имя файла, если он находится в папке программы: ")
 
-def searcher(reader, quest, param, quest_1=0, param_1=0, quest_2=0, param_2=0, param_4=0):
+def searcher(reader, quest, param, quest_1=0, param_1=0, quest_2=0, param_2=0):
     i = 0
     with open ("info.csv", mode="w", encoding='utf_8') as w_file:
         
@@ -39,6 +39,7 @@ def myprint():
 
 def main():
     myprint()
+    print()
     menu = int(input())
     while menu<0 or menu>2:
         print("Ошибка: выбранный пункт отсутствует.")
@@ -49,7 +50,8 @@ def main():
             case 1:
                 print("Доступны следующие параметры поиска")
                 print("ИМЯ | ФАМИЛИЯ | ПОЛ(М/Ж) | ЛЕТ | СТРАНА | ГОРОД | ОТКРЫТЫ СООБЩЕНИЯ(да/нет) | ОТКРЫТЫЙ ПРОФИЛЬ(да/нет) | ПРЕМИУМ(да/нет) | ПРИВАТ(да/нет) | VIP(да/нет)")
-                break
+                myprint()
+                menu = int(input())
             
             case 2:
                 choise = int(input("Введите количество критериев поиска(от 1 до 3х): "))
@@ -57,7 +59,7 @@ def main():
                     print("Ошибка: введенное число не принадлежит диапазону от 1 до 3х")
                     choise = input("Введите количество критериев поиска(от 1 до 3х): ")
     
-                with open('base_to_OK.csv', encoding='utf_8') as f:
+                with open(f'{path}.csv', encoding='utf_8') as f:
                     reader = csv.DictReader(f, delimiter= ';')
                     while choise != 0:
                         match choise:
